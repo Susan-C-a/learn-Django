@@ -1,31 +1,11 @@
-<html>
-    <head>
-        <title>SC's blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href=".">SC Blog</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-            <div>
-                <p>published: {{ post.published_date }}</p>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-        {% endfor %}
-        
-
-        <div>
-            <p>published: 18.02.2020, 14:45</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Hello! World</p>
+{% block content %} 
+    {% for post in posts %}
+        <div class="post">
+            <p>published: {{ post.published_date }}</p>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <p>published: 18.02.2020, 14:46</p>
-            <h2><a href="">My second post</a></h2>
-            <p>This is the second post</p>
-        </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}    
